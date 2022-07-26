@@ -1,0 +1,12 @@
+*.class
+*.jar
+*.war
+*.original
+*.log
+*.log.gz
+.idea/
+.vscode/
+/logs/
+target/
+/target/**
+/classes/

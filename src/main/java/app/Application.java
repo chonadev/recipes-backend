@@ -12,8 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @Configuration
-@EnableAutoConfiguration
-@ComponentScan
 @SpringBootApplication
 @ImportResource({"classpath:/META-INF/portal/context.xml"})
 //@EnableJpaRepositories(basePackages = {
