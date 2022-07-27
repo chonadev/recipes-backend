@@ -22,4 +22,8 @@ public interface RecipeService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public RecipesResponse saveNewRecipe(@Valid @RequestBody Recipe recipe);
 
+	@PUT
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public RecipesResponse updateRecipe(@RequestBody RecipeRequest recipe, @PathParam("id") Long id);
 }
