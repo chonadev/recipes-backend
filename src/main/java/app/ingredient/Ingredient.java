@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Ingredient {
+public class Ingredient implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,9 +16,9 @@ public class Ingredient {
 
 	private String name;
 	private double amount;
-	
-	@Column(name="recipe_id")
-	private long recipeId;
+
+//	@Column(name="recipe_id")
+//	private long recipeId;
 	
 	public Ingredient() {
 	}
@@ -35,12 +36,12 @@ public class Ingredient {
 		this.amount = amount;
 	}
 
-	public long getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(long recipeId) {
-		this.recipeId = recipeId;
-	}
+//	public long getRecipeId() {
+//		return recipeId;
+//	}
+//
+//	public void setRecipeId(long recipeId) {
+//		this.recipeId = recipeId;
+//	}
 	
 }
