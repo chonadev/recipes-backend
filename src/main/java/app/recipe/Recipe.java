@@ -1,5 +1,7 @@
 package app.recipe;
 
+import app.ingredient.Ingredient;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;

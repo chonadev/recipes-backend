@@ -10,25 +10,29 @@
 			http://www.springframework.org/schema/util/spring-util.xsd
 			http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
-
 	<jaxrs:server id="restServices" address="/">
-		<jaxrs:serviceBeans>
 
+		<jaxrs:serviceBeans>
 			<ref bean="recipeService"/>
+			<ref bean="ingredientService" />
 		</jaxrs:serviceBeans>
+
   		<jaxrs:providers>
 			<ref bean="jsonProvider"/>
 		</jaxrs:providers>
+
 		<jaxrs:features>
 			<bean class="org.apache.cxf.feature.LoggingFeature"/>
 		</jaxrs:features>
+
 	</jaxrs:server>
-	
-	
-	<bean id="recipeService" class="app.service.RecipeServiceImpl">
+
+	<bean id="recipeService" class="app.recipe.RecipeServiceImpl">
 	</bean>
-	
-	
+
+	<bean id="ingredientService" class="app.ingredient.IngredientServiceImpl">
+	</bean>
+
 	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider">
 	</bean>
 	

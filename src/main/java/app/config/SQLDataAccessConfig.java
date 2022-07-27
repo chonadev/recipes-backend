@@ -1,4 +1,4 @@
-package app.datasource;
+package app.config;
 
 import javax.persistence.EntityManagerFactory;
 

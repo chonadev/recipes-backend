@@ -1,4 +1,4 @@
-package app.service;
+package app.shared;
 
 public class AbstractResponse {
 

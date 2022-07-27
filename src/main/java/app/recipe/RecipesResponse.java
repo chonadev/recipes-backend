@@ -1,9 +1,9 @@
-package app.service;
+package app.recipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import app.recipe.Recipe;
+import app.shared.AbstractResponse;
 
 
 public class RecipesResponse extends AbstractResponse {

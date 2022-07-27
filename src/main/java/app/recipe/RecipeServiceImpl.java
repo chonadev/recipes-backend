@@ -1,10 +1,8 @@
-package app.service;
+package app.recipe;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import app.datasource.RecipeDatasource;
 
 public class RecipeServiceImpl implements RecipeService {
 
