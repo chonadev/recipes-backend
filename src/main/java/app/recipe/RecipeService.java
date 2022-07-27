@@ -1,22 +1,25 @@
 package app.recipe;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.validation.Valid;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Path("recipe")
 @Component
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface RecipeService {
 	
 	@GET
 	@Path("/all")
 	public RecipesResponse getRecipes();
+
+	@POST
+	@Path("")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public RecipesResponse saveNewRecipe(@Valid @RequestBody Recipe recipe);
 
 }
