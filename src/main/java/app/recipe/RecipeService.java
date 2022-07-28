@@ -26,4 +26,9 @@ public interface RecipeService {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public RecipesResponse updateRecipe(@RequestBody RecipeRequest recipe, @PathParam("id") Long id);
+
+	@DELETE
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public RecipesResponse deleteRecipe(@PathParam("id") Long id);
 }

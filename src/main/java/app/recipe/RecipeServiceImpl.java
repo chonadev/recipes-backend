@@ -85,6 +85,22 @@ public class RecipeServiceImpl implements RecipeService {
 		return response;
 	}
 
+	@Override
+	public RecipesResponse deleteRecipe(Long id) {
+		RecipesResponse response = new RecipesResponse();
+
+		response.setCode(HttpStatus.NO_CONTENT.toString());
+		response.setDescription(HttpStatus.NO_CONTENT.name());
+		try {
+			this.datasource.delete(id);
+		} catch (Exception e) {
+			logger.error("Error al eliminar receta en la base de datos.");
+			response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			response.setDescription("Ha ocurrido un error al eliminar la receta");
+		}
+		return response;
+	}
+
 	private Recipe mapper(RecipeRequest request) {
 		Recipe recipe = new Recipe();
 		recipe.setName(request.getName());
