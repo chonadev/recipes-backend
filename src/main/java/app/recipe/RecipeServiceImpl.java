@@ -1,11 +1,15 @@
 package app.recipe;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class RecipeServiceImpl implements RecipeService {
 
@@ -51,5 +55,42 @@ public class RecipeServiceImpl implements RecipeService {
 		return response;
 	}
 
+	@Override
+	public RecipesResponse updateRecipe(RecipeRequest req, Long id) {
 
+		RecipesResponse response = new RecipesResponse();
+
+		response.setCode(HttpStatus.OK.toString());
+		response.setDescription(HttpStatus.OK.name());
+
+		try {
+			Optional<Recipe> recipeOptional = Optional.ofNullable(datasource.findOne(id));
+			if (!recipeOptional.isPresent()) {
+				response.setCode(HttpStatus.NOT_FOUND.toString());
+				response.setDescription(HttpStatus.NOT_FOUND.name());
+				return response;
+			}
+
+			Recipe recipeToUpdate = this.mapper(req);
+			recipeToUpdate.setId(id);
+
+			Recipe updatedRecipe = datasource.save(recipeToUpdate);
+			response.setRecipes(Arrays.asList(updatedRecipe));
+		} catch(Exception e) {
+			logger.error("Error al actualizar receta en la base de datos.");
+			response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			response.setDescription("Ha ocurrido un error al actualizar la receta");
+		}
+
+		return response;
+	}
+
+	private Recipe mapper(RecipeRequest request) {
+		Recipe recipe = new Recipe();
+		recipe.setName(request.getName());
+		recipe.setDescription(request.getDescription());
+		recipe.setImagePath(request.getImagePath());
+		recipe.setIngredients(request.getIngredients());
+		return recipe;
+	}
 }
